@@ -1,0 +1,32 @@
+<html>
+<head>
+	<title>Kid Program</title>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/processing.js/1.4.1/processing.min.js"></script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	
+</head>
+<body>
+	<script type="text/processing" data-processing-target="mycanvas">
+	</script>
+	<canvas id="mycanvas" data-processing-sources="board.pde"></canvas>
+
+	<textarea id="code" rows="10" cols="20"></textarea>
+	<button id="run">Run</button>
+
+	<script type="text/javascript">
+		var p = {
+			px: 0,
+			py: 0
+		};
+		var direction = 2;
+		var delay = false;
+		var commandList = undefined;
+		var commandIndex = 0;
+		$(function() {
+			$("#run").on("click", function() {
+				commandList = $("#code").val().split("\n")
+			})
+		})
+	</script>
+</body>
+</html>
