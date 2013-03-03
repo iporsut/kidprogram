@@ -1,4 +1,24 @@
 PImage catImage;
+PImage mouseImage;
+int[] randp;
+
+// random point with not same point of cat :)
+int[] randomPoint(int px, int py) {
+  int x, y;
+  while (true) {
+    x = int(random(0, 4));
+    y = int(random(0, 4));
+    if (x == px && y == py) {
+      continue;
+    } else {
+      break;
+    }
+  }
+
+  return new int[] { x, y };
+}
+
+
 void setup()
 {
   size(400,400);
@@ -7,6 +27,8 @@ void setup()
   frameRate(1);
   noFill();
   catImage = loadImage("cat.png");
+  mouseImage = loadImage("mouse.png");
+  randp = randomPoint(0, 0); // not same point 0, 0
 }
 
 void walk() {
@@ -62,10 +84,10 @@ void turnRight() {
 		case 4:
 			direction = 1;
 		break;
-	}	
+	}
 }
 
-void draw(){  
+void draw(){
   var x = 40, y = 40;
   if (commandList != undefined) {
   	if(commandIndex < commandList.length) {
@@ -92,9 +114,14 @@ void draw(){
   noFill();
   rect(0,0,399,399);
   fill(0);
+  image(mouseImage, randp[0] * 80 + 20, randp[1] * 80 + 20);
   for (var i = 0; i < 5; i++) {
   	for (var j = 0; j < 5; j++) {
   		if (p.px == j && p.py == i) {
+        if (p.px == randp[0] && p.py == randp[1]) {
+          randp = randomPoint(i, j);
+          image(mouseImage, randp[0] * 80 + 20, randp[1] * 80 + 20);
+        }
   			stroke(255,0,0);
   			fill(255,0,0);
   			ellipse(x,y,5,5);
@@ -102,12 +129,12 @@ void draw(){
   		} else {
   			stroke(0);
   			fill(0);
-  			ellipse(x,y,5,5);	
+  			ellipse(x,y,5,5);
   		}
   		x+=80;
-  	}	
+  	}
   	x = 40;
   	y+=80;
   }
-  
-}	
+
+}
