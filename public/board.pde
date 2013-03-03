@@ -119,6 +119,9 @@ void draw(){
   	for (var j = 0; j < 5; j++) {
   		if (p.px == j && p.py == i) {
         if (p.px == randp[0] && p.py == randp[1]) {
+          stroke(255);
+          fill(255);
+          rect(x - 20, y - 20, 40, 40);
           randp = randomPoint(i, j);
           image(mouseImage, randp[0] * 80 + 20, randp[1] * 80 + 20);
         }
